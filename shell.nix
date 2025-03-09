@@ -3,6 +3,7 @@
 }:
 pkgs.mkShell {
   packages = with pkgs; [
+    clang-tools
     cmake
     freeglut
     glew
