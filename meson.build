@@ -6,10 +6,11 @@ add_project_arguments('-Wall', '-Wextra', '-pedantic', '-D_HAS_CXX17=1', languag
 # Dependencies
 deps = [
     dependency('gl', required: true),
+    dependency('glew', required: true),
+    dependency('glfw3', required: true),
+    dependency('glm', required: true),
     dependency('glu', required: true),
     dependency('glut', required: true),
-    dependency('glew', required: true),
-    dependency('glfw3', required: true)
 ]
 
 # External Libraries
@@ -18,18 +19,25 @@ libs = [
     static_library('lodepng', 'external/lodepng/lodepng.cpp', include_directories: 'external/lodepng')
 ]
 
-# Source files
-srcs = files(
-    'src/green.cpp',
-    'framework.h',
-    'framework.cpp'
-)
+include_directories = [
+    'external/glad/include',
+    'external/lodepng'
+]
 
-# Executable
-executable('out', srcs, dependencies: deps, link_with: libs,
-    include_directories: [
-        'external/glad/include',
-        'external/lodepng',
-        '/usr/include/glm'
-    ]
-)
+targets = [
+    'green',
+]
+
+foreach target : targets
+    executable(
+        target,
+        files(
+            'src/' + target + '.cpp',
+            'framework.h',
+            'framework.cpp'
+        ),
+        dependencies: deps,
+        link_with: libs,
+        include_directories: include_directories,
+    )
+endforeach
