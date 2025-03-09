@@ -1,0 +1,20 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html#configurable-format-style-options
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+BinPackArguments: false
+BinPackParameters: false
+IndentWrappedFunctionNames: true
+AlignAfterOpenBracket: BlockIndent
+
+---
+Language: Cpp
+# Force pointers to the type for C++.
+DerivePointerAlignment: false
+PointerAlignment: Left
+SeparateDefinitionBlocks: Always
+IndentCaseLabels: true
+NamespaceIndentation: All
+BreakBeforeTernaryOperators: true
+
+...
