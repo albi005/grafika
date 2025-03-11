@@ -26,6 +26,7 @@ include_directories = [
 
 targets = [
     'green',
+    'hf1',
 ]
 
 foreach target : targets
